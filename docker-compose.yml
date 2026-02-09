@@ -1,0 +1,31 @@
+version: 3.8
+
+services:
+  nginx-proxy:
+    image: nginx-alpine
+    container_name: skillnest-proxy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes: 
+      - ./nginx/conf.d:/etc/nginx.conf.d
+    depends_on:
+      - backend
+  backend:
+    image: thaodinh426/skillnest-backend-prod:latest
+    container_name: skillnest-backend-prod
+    restart: always
+    environment:
+      - SPRING_PROFILES_ACTIVE=pro
+      - DB_URL=${DB_URL}
+      - DB_USERNAME=${DB_USERNAME}
+      - JWT_SECRET=${JWT_SECRET}
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
