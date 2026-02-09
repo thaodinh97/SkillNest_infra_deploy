@@ -9,5 +9,4 @@ variable "clusterName" {
     type = string
     default = "gitops-eks"
 }
-
-##
+####
