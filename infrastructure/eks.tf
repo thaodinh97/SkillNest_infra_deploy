@@ -14,7 +14,7 @@ module "eks" {
   # EKS Managed Node Group(s)
   eks_managed_node_groups = {
     one = {
-      ami_type       = "AL2_x86_64"
+      ami_type       = "AL2023_x86_64_STANDARD"
       name           = "node-group-1"
       instance_types = ["t3.small"]
 
@@ -24,7 +24,7 @@ module "eks" {
     }
 
     two = {
-      ami_type       = "AL2_x86_64"
+      ami_type       = "AL2023_x86_64_STANDARD"
       name           = "node-group-2"
       instance_types = ["t3.small"]
 
