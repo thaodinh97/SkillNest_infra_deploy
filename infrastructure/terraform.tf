@@ -1,23 +1,23 @@
 terraform {
   required_providers {
     aws = {
-        source  = "hashicorp/aws"
-        version = "~> 5.25.0"
+      source  = "hashicorp/aws"
+      version = "~> 5.25.0"
     }
 
     random = {
-        source  = "hashicorp/random"
-        version = "~> 3.5.1"
+      source  = "hashicorp/random"
+      version = "~> 3.5.1"
     }
 
     tls = {
-        source  = "hashicorp/tls"
-        version = "~> 4.0.4"
+      source  = "hashicorp/tls"
+      version = "~> 4.0.4"
     }
 
     cloudinit = {
       source  = "hashicorp/cloudinit"
-      version = "~> 2.3.2"       
+      version = "~> 2.3.2"
     }
 
     kubernetes = {
@@ -28,7 +28,7 @@ terraform {
 
   backend "s3" {
     bucket = "skillnest-action-tdinh"
-    key = "terraform.tfstate"
+    key    = "terraform.tfstate"
     region = "us-east-1"
   }
 
