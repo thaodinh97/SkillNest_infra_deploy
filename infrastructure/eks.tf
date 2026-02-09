@@ -3,14 +3,11 @@ module "eks" {
   version = "~> 21.0"
 
   name               = local.cluster_name
-  kubernetes_version = "1.27"
+  kubernetes_version = "1.33"
 
   endpoint_public_access                   = true
   enable_cluster_creator_admin_permissions = true
 
-  compute_config = {
-    enable = false
-  }
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
 
