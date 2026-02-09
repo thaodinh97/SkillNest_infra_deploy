@@ -2,13 +2,13 @@ name: "SkillNest IAC"
 on:
   push:
     branches:
-      - feature/deploy-on-eks
+      - main
       - stage
     paths:
       - infrastructure/**
   pull_request:
     branches:
-      - feature/deploy-on-eks
+      - main
     paths:
       - infrastructure/**
 env:
@@ -57,7 +57,7 @@ jobs:
 
       - name: TF apply
         id: apply
-        if: github.ref == 'refs/heads/feature/deploy-on-eks' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false -parallelism=1 planfile
 
       - name: Configure AWS credentials
