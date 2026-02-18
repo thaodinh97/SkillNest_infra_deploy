@@ -39,4 +39,4 @@ jobs:
         run: terraform init -backend-config="bucket=$BUCKET_TF_STATE"
 
       - name: TF Destroy
-        run: terraform destroy -auto-approve -input=false
+        run: terraform destroy -var="project_name=skillnest" -auto-approve -input=false
