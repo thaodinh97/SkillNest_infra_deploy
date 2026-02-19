@@ -31,7 +31,7 @@ resource "aws_ecs_service" "backend" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
-  depends_on = [ aws_alb_listener.http ]
+  depends_on = [aws_alb_listener.http]
 
   network_configuration {
     subnets          = module.vpc.private_subnets
