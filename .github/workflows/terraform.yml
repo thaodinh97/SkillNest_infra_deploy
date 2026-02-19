@@ -11,6 +11,7 @@ on:
       - main
     paths:
       - infra/**
+  workflow_dispatch:
 env:
   BUCKET_TF_STATE: ${{ secrets.BUCKET_TF_STATE}}
   AWS_REGION: us-east-1
