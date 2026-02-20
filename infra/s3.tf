@@ -1,5 +1,6 @@
 resource "aws_s3_bucket" "frontend" {
   bucket = "${var.project_name}-frontend-tdinh"
+  force_destroy = true
 }
 
 resource "aws_s3_bucket_policy" "frontend_policy" {

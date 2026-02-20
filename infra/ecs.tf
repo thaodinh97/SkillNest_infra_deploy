@@ -20,6 +20,50 @@ resource "aws_ecs_task_definition" "backend" {
           containerPort = 8080
         }
       ]
+
+      environment = [
+        {
+          name  = "DB_URL"
+          value = var.db_url
+        },
+        {
+          name  = "DB_USERNAME"
+          value = var.db_username
+        },
+        {
+          name  = "DB_PASSWORD"
+          value = var.db_password
+        },
+        {
+          name  = "JWT_SECRET"
+          value = var.jwt_secret
+        },
+        {
+          name  = "CORS_ALLOWED_ORIGINS"
+          value = var.cors_allowed_origins
+        },
+        {
+          name  = "CLOUDINARY_CLOUD_NAME"
+          value = var.cloudinary_cloud_name
+        },
+        {
+          name  = "CLOUDINARY_API_KEY"
+          value = var.cloudinary_api_key
+        },
+        {
+          name  = "CLOUDINARY_API_SECRET"
+          value = var.cloudinary_api_secret
+        }
+      ]
+
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          "awslogs-group"         = "/ecs/${var.project_name}-backend"
+          "awslogs-region"        = var.aws_region
+          "awslogs-stream-prefix" = "ecs"
+        }
+      }
     }
   ])
 }
@@ -44,4 +88,9 @@ resource "aws_ecs_service" "backend" {
     container_name   = "backend"
     container_port   = 8080
   }
+}
+
+resource "aws_cloudwatch_log_group" "backend" {
+  name              = "/ecs/${var.project_name}-backend"
+  retention_in_days = 7
 }
