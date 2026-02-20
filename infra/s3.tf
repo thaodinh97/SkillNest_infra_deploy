@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "frontend" {
-  bucket = "${var.project_name}-frontend-tdinh"
+  bucket        = "${var.project_name}-frontend-tdinh"
   force_destroy = true
 }
 
