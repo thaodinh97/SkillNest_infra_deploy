@@ -71,3 +71,5 @@ variable "cloudinary_api_secret" {
   type        = string
   sensitive   = true
 }
+
+###
