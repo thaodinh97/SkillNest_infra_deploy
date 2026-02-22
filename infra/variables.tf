@@ -72,4 +72,16 @@ variable "cloudinary_api_secret" {
   sensitive   = true
 }
 
+variable "domain_name" {
+  description = "Official domain name"
+  type        = string
+  default     = "skillnestedu.id.vn"
+}
+
+variable "api_domain" {
+  description = "Subdomain for Backend API"
+  type        = string
+  default     = "api.skillnest.id.vn" 
+}
+
 ###
