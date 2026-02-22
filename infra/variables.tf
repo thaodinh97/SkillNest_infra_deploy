@@ -81,7 +81,7 @@ variable "domain_name" {
 variable "api_domain" {
   description = "Subdomain for Backend API"
   type        = string
-  default     = "api.skillnest.id.vn" 
+  default     = "api.skillnest.id.vn"
 }
 
 ###
