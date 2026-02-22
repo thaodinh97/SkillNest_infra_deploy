@@ -84,4 +84,5 @@ variable "api_domain" {
   default     = "api.skillnest.id.vn"
 }
 
+
 ###
