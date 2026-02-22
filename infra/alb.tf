@@ -32,7 +32,7 @@ resource "aws_alb_listener" "http" {
     redirect {
       port        = "443"
       protocol    = "HTTPS"
-      status_code = "HTTPS_301"
+      status_code = "HTTP_301"
     }
   }
 }
