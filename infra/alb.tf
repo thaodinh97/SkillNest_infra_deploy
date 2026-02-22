@@ -44,7 +44,7 @@ resource "aws_alb_listener" "https" {
 
   ssl_policy = "ELBSecurityPolicy-2016-08"
 
-  certificate_arn = aws_acm_certificate_validation.api.certificate_arn
+  certificate_arn = "arn:aws:acm:us-east-1:911893329503:certificate/700151ab-63ae-4de0-8036-1c1be40cef8e"
 
   default_action {
     type             = "forward"
