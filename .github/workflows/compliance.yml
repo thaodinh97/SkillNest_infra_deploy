@@ -12,7 +12,7 @@ on:
     branches: [main, stage]
     paths:
       - infra/**
-      - infras_eks/**
+      - infra_eks/**
       - policy/**
       - .github/workflows/compliance.yml
   workflow_dispatch:
@@ -48,6 +48,7 @@ jobs:
       - name: Terraform plan for policy evaluation
         run: |
           terraform -chdir=infra plan \
+            -lock=false \
             -var="project_name=skillnest" \
             -var="db_url=dummy" \
             -var="db_username=dummy" \
@@ -65,7 +66,6 @@ jobs:
 
       - name: Setup Conftest
         uses: instrumenta/conftest-action@2b17b6e48009573bfee75b6f2b51bb1dacb05a2a
-
 
       - name: OPA policy check
         run: conftest test tfplan.json -p policy/terraform
