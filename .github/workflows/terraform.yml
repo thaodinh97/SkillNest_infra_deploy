@@ -68,8 +68,17 @@ jobs:
         continue-on-error: true
 
       - name: TF plan status
-        if: steps.validate.outcome == 'failure'
+        if: steps.plan.outcome == 'failure'
         run: exit 1
+
+      - name: Convert plan to JSON for Conftest
+        run: terraform show -json planfile > tfplan.json
+
+      - name: Setup Conftest
+        uses: instrumenta/conftest-action@2b17b6e48009573bfee75b6f2b51bb1dacb05a2a
+
+      - name: OPA policy check
+        run: conftest test tfplan.json -p ../policy/terraform
 
       - name: TF apply
         id: apply
