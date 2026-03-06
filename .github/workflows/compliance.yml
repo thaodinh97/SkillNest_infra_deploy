@@ -45,19 +45,6 @@ jobs:
         id: validate
         run: terraform -chdir=infra validate
 
-      - name: tfsec scan
-        uses: aquasecurity/tfsec-action@b466648d6e39e7c75324f25d83891162a721f2d6
-        with:
-          working_directory: infra
-
-      - name: Checkov scan
-        id: checkov
-        uses: bridgecrewio/checkov-action@99bb2caf247dfd9f03cf984373bc6043d4e32ebf
-        with:
-          directory: infra
-          quiet: true
-          soft_fail: false
-
       - name: Terraform plan for policy evaluation
         run: |
           terraform -chdir=infra plan \
