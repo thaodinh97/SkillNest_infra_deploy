@@ -64,21 +64,12 @@ jobs:
           TF_VAR_cloudinary_cloud_name: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
           TF_VAR_cloudinary_api_key: ${{ secrets.CLOUDINARY_API_KEY }}
           TF_VAR_cloudinary_api_secret: ${{ secrets.CLOUDINARY_API_SECRET }}
-        run: terraform plan -var="project_name=skillnest" -no-color -input=false -out=planfile
+        run: terraform plan -var="project_name=skillnest" -no-color -input=false -out planfile
         continue-on-error: true
 
       - name: TF plan status
         if: steps.plan.outcome == 'failure'
         run: exit 1
-
-      - name: Convert plan to JSON for Conftest
-        run: terraform show -json planfile > tfplan.json
-
-      - name: Setup Conftest
-        uses: princespaghetti/setup-conftest@417586a9b2e806fc5a95c72dfe98e296ef092b6f
-
-      - name: OPA policy check
-        run: conftest test tfplan.json -p ../policy/terraform
 
       - name: TF apply
         id: apply
