@@ -64,7 +64,7 @@ jobs:
           TF_VAR_cloudinary_cloud_name: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
           TF_VAR_cloudinary_api_key: ${{ secrets.CLOUDINARY_API_KEY }}
           TF_VAR_cloudinary_api_secret: ${{ secrets.CLOUDINARY_API_SECRET }}
-        run: terraform plan -var="project_name=skillnest" -no-color -input=false -out planfile
+        run: terraform plan -var="project_name=skillnest" -no-color -input=false -out=planfile
         continue-on-error: true
 
       - name: TF plan status
