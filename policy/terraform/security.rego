@@ -12,21 +12,21 @@ has_s3_encrypt(rc) {
     rc.change.after.server_side_encryption_configuration != null
 }
 
-#deny[msg] {
-#    rc := input.resource_changes[_]
-#    rc.type := "aws_security_group"
-#    ingress := rc.change.after.ingress[_]
-#    world_open(ingress.cidr_blocks)
-#    risky_port(ingress.from_port)
-#
-#}
-#
-#world_open(cidr_blocks)
-#{
-#    cidr_blocks[_] = "0.0.0.0/0"
-#}
+deny[msg] {
+    rc := input.resource_changes[_]
+    rc.type := "aws_security_group"
+    ingress := rc.change.after.ingress[_]
+    world_open(ingress.cidr_blocks)
+    risky_port(ingress.from_port)
 
-#risky_port(from_port) {
-#    from_port == 22
-#}
+}
+
+world_open(cidr_blocks)
+{
+    cidr_blocks[_] = "0.0.0.0/0"
+}
+
+risky_port(from_port) {
+    from_port == 22
+}
 
