@@ -35,7 +35,7 @@ jobs:
 
       - name: TF init
         id: init
-        run: terraform init -backend=false
+        run: terraform -chdir=infra init -backend=false
 
       - name: TF format
         id: fmt
@@ -78,6 +78,7 @@ jobs:
 
       - name: Setup Conftest
         uses: instrumenta/conftest-action@2b17b6e48009573bfee75b6f2b51bb1dacb05a2a
+
 
       - name: OPA policy check
         run: conftest test tfplan.json -p policy/terraform
